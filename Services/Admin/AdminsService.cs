@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using LibraryManagement.DTOs;
 using LibraryManagement.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
@@ -7,12 +6,14 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
+using LibraryManagement.Areas.Admin.Models;
+using LibraryManagement.DTOs.Admin;
 
-namespace LibraryManagement.Services
+namespace LibraryManagement.Services.Admin
 {
     public class AdminsService
     {
-        private readonly IMongoCollection<Admin> _adminsCollection;
+        private readonly IMongoCollection<AdminModel> _adminsCollection;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
 
@@ -23,15 +24,15 @@ namespace LibraryManagement.Services
         {
             var mongoClient = new MongoClient(libraryManagementDatabaseSettings.Value.ConnectionString);
             var database = mongoClient.GetDatabase(libraryManagementDatabaseSettings.Value.DatabaseName);
-            _adminsCollection = database.GetCollection<Admin>(
+            _adminsCollection = database.GetCollection<AdminModel>(
                 libraryManagementDatabaseSettings.Value.Collections.Admins);
             _mapper = mapper;
             _configuration = configuration;
         }
 
-        public async Task<Admin> RegisterAsync(AdminDTO adminDto)
+        public async Task<AdminModel> RegisterAsync(AdminDTO adminDto)
         {
-            var admin = _mapper.Map<Admin>(adminDto);
+            var admin = _mapper.Map<AdminModel>(adminDto);
             admin.Password = BCrypt.Net.BCrypt.HashPassword(adminDto.Password);
 
             await _adminsCollection.InsertOneAsync(admin);
@@ -50,7 +51,7 @@ namespace LibraryManagement.Services
             return GenerateJwtToken(admin);
         }
 
-        private string GenerateJwtToken(Admin admin)
+        private string GenerateJwtToken(AdminModel admin)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);

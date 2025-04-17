@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
-using LibraryManagement.DTOs;
+using LibraryManagement.Areas.Admin.Models;
+using LibraryManagement.DTOs.Admin;
 using LibraryManagement.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace LibraryManagement.Services
+namespace LibraryManagement.Services.Admin
 {
     public class CategoriesService
     {

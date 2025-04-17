@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace LibraryManagement.Models
+namespace LibraryManagement.Areas.Admin.Models
 {
     public class Book
     {

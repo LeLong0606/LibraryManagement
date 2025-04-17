@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
-using LibraryManagement.DTOs;
-using LibraryManagement.Models;
+using LibraryManagement.Areas.Admin.Models;
 using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 
-namespace LibraryManagement.DTOs
+namespace LibraryManagement.DTOs.Admin
 {
     public class AdminDTO
     {
@@ -22,7 +21,7 @@ namespace LibraryManagement.DTOs
     {
         public MappingProfileAdmin()
         {
-            CreateMap<AdminDTO, Admin>();
+            CreateMap<AdminDTO, AdminModel>();
         }
     }
 }

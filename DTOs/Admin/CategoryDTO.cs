@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using LibraryManagement.Models;
+using LibraryManagement.Areas.Admin.Models;
 
-namespace LibraryManagement.DTOs
+namespace LibraryManagement.DTOs.Admin
 {
     public class CategoryDTO
     {

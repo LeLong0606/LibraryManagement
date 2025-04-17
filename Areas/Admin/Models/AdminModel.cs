@@ -3,9 +3,9 @@ using MongoDB.Bson;
 using System.Text.Json.Serialization;
 using System.ComponentModel;
 
-namespace LibraryManagement.Models
+namespace LibraryManagement.Areas.Admin.Models
 {
-    public class Admin
+    public class AdminModel
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

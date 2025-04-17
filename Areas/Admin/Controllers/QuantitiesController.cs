@@ -1,11 +1,12 @@
-﻿using LibraryManagement.DTOs;
-using LibraryManagement.Models;
-using LibraryManagement.Services;
+﻿using LibraryManagement.Areas.Admin.Models;
+using LibraryManagement.DTOs.Admin;
+using LibraryManagement.Services.Admin;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LibraryManagement.Controllers
+namespace LibraryManagement.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [Authorize(Roles = "Admin")]
     [Route("LibraryAPI/[controller]")]
     [ApiController]

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using LibraryManagement.Models;
+using LibraryManagement.Areas.Admin.Models;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
 
-namespace LibraryManagement.DTOs
+namespace LibraryManagement.DTOs.Admin
 {
     public class QuantityDTO
     {

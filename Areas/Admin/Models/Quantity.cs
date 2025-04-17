@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 using System.Text.Json.Serialization;
 
-namespace LibraryManagement.Models
+namespace LibraryManagement.Areas.Admin.Models
 {
     public class Quantity
     {

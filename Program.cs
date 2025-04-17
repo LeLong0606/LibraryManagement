@@ -1,8 +1,8 @@
 using System.Text;
-using LibraryManagement.DTOs;
+using LibraryManagement.DTOs.Admin;
 using LibraryManagement.Middleware;
 using LibraryManagement.Models;
-using LibraryManagement.Services;
+using LibraryManagement.Services.Admin;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -97,6 +97,14 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllerRoute(
+    name: "Admin",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+);
+
+app.MapControllerRoute(
+    name: "User",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+);
 
 app.Run();

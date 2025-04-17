@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using LibraryManagement.Models;
-using LibraryManagement.DTOs;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using MongoDB.Driver.Core.Configuration;
+using LibraryManagement.Areas.Admin.Models;
+using LibraryManagement.DTOs.Admin;
 
-namespace LibraryManagement.Services
+namespace LibraryManagement.Services.Admin
 {
     public class BooksService
     {

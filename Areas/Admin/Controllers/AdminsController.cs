@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using LibraryManagement.DTOs;
-using LibraryManagement.Services;
+using LibraryManagement.DTOs.Admin;
+using LibraryManagement.Services.Admin;
 
-namespace LibraryManagement.Controllers
+namespace LibraryManagement.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [Route("LabraryAPI/[controller]")]
     [ApiController]
     public class AdminsController : ControllerBase

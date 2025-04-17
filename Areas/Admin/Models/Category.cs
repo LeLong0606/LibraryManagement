@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
-namespace LibraryManagement.Models
+namespace LibraryManagement.Areas.Admin.Models
 {
     public class Category
     {
