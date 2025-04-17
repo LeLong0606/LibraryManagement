@@ -11,5 +11,7 @@
     {
         public string Books { get; set; } = null!;
         public string Admins { get; set; } = null!;
+        public string Categories { get; set; } = null!;
+        public string Quantities { get; set; } = null!;
     }
 }

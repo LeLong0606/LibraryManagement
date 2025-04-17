@@ -1,5 +1,6 @@
 using System.Text;
 using LibraryManagement.DTOs;
+using LibraryManagement.Middleware;
 using LibraryManagement.Models;
 using LibraryManagement.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -12,10 +13,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<LMDSettings>(
     builder.Configuration.GetSection("LibraryManagementDatabase"));
 
-builder.Services.AddAutoMapper(typeof(BookDTO));
-builder.Services.AddAutoMapper(typeof(AdminDTO));
+builder.Services.AddAutoMapper(typeof(MappingProfileBook));
+builder.Services.AddAutoMapper(typeof(MappingProfileAdmin));
+builder.Services.AddAutoMapper(typeof(MappingProfileBook));
+builder.Services.AddAutoMapper(typeof(MappingProfileQuantity));
 builder.Services.AddSingleton<BooksService>();
 builder.Services.AddSingleton<AdminsService>();
+builder.Services.AddSingleton<CategoriesService>();
+builder.Services.AddSingleton<QuantitiesService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
@@ -76,6 +81,8 @@ builder.Services.AddAuthentication(options =>
 });
 
 var app = builder.Build();
+
+app.UseMiddleware<LoggingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

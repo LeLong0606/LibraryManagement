@@ -23,7 +23,7 @@ namespace LibraryManagement.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginRequest request)
+        public async Task<IActionResult> Login(LoginRequestDTO request)
         {
             var token = await _adminsService.LoginAsync(request.Email, request.Password);
 

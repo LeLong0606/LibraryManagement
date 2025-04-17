@@ -35,9 +35,15 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(BookDTO newBookDTO)
         {
-            var createdBook =  await _booksService.CreateAsync(newBookDTO);
-
-            return CreatedAtAction(nameof(Get), new {id = createdBook.Id }, createdBook);
+            try
+            {
+                var createdBook = await _booksService.CreateAsync(newBookDTO);
+                return CreatedAtAction(nameof(Get), new { id = createdBook.Id }, createdBook);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPut("{id:length(24)}")]
@@ -45,14 +51,20 @@ namespace LibraryManagement.Controllers
         {
             var book = await _booksService.GetAsync(id);
 
-            if (id is null)
+            if (book is null)
             {
                 return NotFound();
             }
 
-            await _booksService.UpdateAsync(id, updatedBookDTO);
-
-            return NoContent();
+            try
+            {
+                await _booksService.UpdateAsync(id, updatedBookDTO);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id:length(24)}")]

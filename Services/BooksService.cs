@@ -10,6 +10,7 @@ namespace LibraryManagement.Services
     public class BooksService
     {
         private readonly IMongoCollection<Book> _booksCollection;
+        private readonly IMongoCollection<Category> _categoriesCollection;
         private readonly IMapper _mapper;
 
         public BooksService(IOptions<LMDSettings> libraryManagementDatabaseSettings, IMapper mapper)
@@ -17,6 +18,7 @@ namespace LibraryManagement.Services
             var mongoClient = new MongoClient(libraryManagementDatabaseSettings.Value.ConnectionString);
             var mongoDatabase = mongoClient.GetDatabase(libraryManagementDatabaseSettings.Value.DatabaseName);
             _booksCollection = mongoDatabase.GetCollection<Book>(libraryManagementDatabaseSettings.Value.Collections.Books);
+            _categoriesCollection = mongoDatabase.GetCollection<Category>(libraryManagementDatabaseSettings.Value.Collections.Categories);
             _mapper = mapper;
         }
 
@@ -24,19 +26,33 @@ namespace LibraryManagement.Services
 
         public async Task<Book?> GetAsync(string id) => await _booksCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
-        public async Task<Book> CreateAsync (BookDTO newBookDTO)
+        public async Task<Book> CreateAsync(BookDTO newBookDTO)
         {
-            var newBookDto = _mapper.Map<Book>(newBookDTO);
-            await _booksCollection.InsertOneAsync(newBookDto);
-            return newBookDto;
+            var categoryExists = await _categoriesCollection
+                .Find(c => c.Name == newBookDTO.Category)
+                .AnyAsync();
+
+            if (!categoryExists)
+                throw new Exception("Invalid category please enter another valid category");
+
+            var newBook = _mapper.Map<Book>(newBookDTO);
+            await _booksCollection.InsertOneAsync(newBook);
+            return newBook;
         }
 
         public async Task UpdateAsync(string id, BookDTO updateBookDTO)
         {
-            var updateBookDto = _mapper.Map<Book>(updateBookDTO);
-            updateBookDto.Id = id;
-            await _booksCollection.ReplaceOneAsync(x => x.Id == id, updateBookDto);
-        } 
+            var categoryExists = await _categoriesCollection
+                .Find(c => c.Name == updateBookDTO.Category)
+                .AnyAsync();
+
+            if (!categoryExists)
+                throw new Exception("Invalid category please enter another valid category");
+
+            var updateBook = _mapper.Map<Book>(updateBookDTO);
+            updateBook.Id = id;
+            await _booksCollection.ReplaceOneAsync(x => x.Id == id, updateBook);
+        }
 
         public async Task RemoveAsync (string id) => await _booksCollection.DeleteOneAsync(x => x.Id == id);
     }
