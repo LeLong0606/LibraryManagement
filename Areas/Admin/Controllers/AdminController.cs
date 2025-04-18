@@ -5,13 +5,13 @@ using LibraryManagement.Services.Admin;
 namespace LibraryManagement.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Route("LabraryAPI/[controller]")]
+    [Route("LabraryAPI/[Area]/[controller]")]
     [ApiController]
-    public class AdminsController : ControllerBase
+    public class AdminController : ControllerBase
     {
-        private readonly AdminsService _adminsService;
+        private readonly AdminService _adminsService;
 
-        public AdminsController(AdminsService adminsService)
+        public AdminController(AdminService adminsService)
         {
             _adminsService = adminsService;
         }

@@ -10,12 +10,12 @@ namespace LibraryManagement.Areas.Admin.Controllers
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
     [ApiController]
-    [Route("LabraryAPI/[controller]")]
-    public class BooksController : ControllerBase
+    [Route("LibraryAPI/[Area]/[controller]")]
+    public class BookController : ControllerBase
     {
-        private readonly BooksService _booksService;
+        private readonly BookService _booksService;
 
-        public BooksController(BooksService booksService) => _booksService = booksService;
+        public BookController(BookService booksService) => _booksService = booksService;
 
         [HttpGet]
         public async Task<List<Book>> Get() => await _booksService.GetAsync();

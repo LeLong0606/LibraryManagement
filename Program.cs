@@ -17,10 +17,10 @@ builder.Services.AddAutoMapper(typeof(MappingProfileBook));
 builder.Services.AddAutoMapper(typeof(MappingProfileAdmin));
 builder.Services.AddAutoMapper(typeof(MappingProfileBook));
 builder.Services.AddAutoMapper(typeof(MappingProfileQuantity));
-builder.Services.AddSingleton<BooksService>();
-builder.Services.AddSingleton<AdminsService>();
-builder.Services.AddSingleton<CategoriesService>();
-builder.Services.AddSingleton<QuantitiesService>();
+builder.Services.AddSingleton<BookService>();
+builder.Services.AddSingleton<AdminService>();
+builder.Services.AddSingleton<CategoryService>();
+builder.Services.AddSingleton<QuantityService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);

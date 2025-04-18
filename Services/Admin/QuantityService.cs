@@ -7,13 +7,13 @@ using MongoDB.Driver;
 
 namespace LibraryManagement.Services.Admin
 {
-    public class QuantitiesService
+    public class QuantityService
     {
         private readonly IMongoCollection<Quantity> _quantitiesCollection;
         private readonly IMongoCollection<Book> _booksCollection;
         private readonly IMapper _mapper;
 
-        public QuantitiesService(
+        public QuantityService(
             IOptions<LMDSettings> libraryManagementDatabaseSettings,
             IMapper mapper)
         {

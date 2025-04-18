@@ -11,13 +11,13 @@ using LibraryManagement.DTOs.Admin;
 
 namespace LibraryManagement.Services.Admin
 {
-    public class AdminsService
+    public class AdminService
     {
         private readonly IMongoCollection<AdminModel> _adminsCollection;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
 
-        public AdminsService(
+        public AdminService(
             IOptions<LMDSettings> libraryManagementDatabaseSettings,
             IMapper mapper,
             IConfiguration configuration)

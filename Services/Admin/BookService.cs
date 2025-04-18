@@ -8,13 +8,13 @@ using LibraryManagement.DTOs.Admin;
 
 namespace LibraryManagement.Services.Admin
 {
-    public class BooksService
+    public class BookService
     {
         private readonly IMongoCollection<Book> _booksCollection;
         private readonly IMongoCollection<Category> _categoriesCollection;
         private readonly IMapper _mapper;
 
-        public BooksService(IOptions<LMDSettings> libraryManagementDatabaseSettings, IMapper mapper)
+        public BookService(IOptions<LMDSettings> libraryManagementDatabaseSettings, IMapper mapper)
         {
             var mongoClient = new MongoClient(libraryManagementDatabaseSettings.Value.ConnectionString);
             var mongoDatabase = mongoClient.GetDatabase(libraryManagementDatabaseSettings.Value.DatabaseName);

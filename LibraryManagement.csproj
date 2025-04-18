@@ -18,7 +18,19 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\" />
+    <Folder Include="Areas\User\Controllers\" />
+    <Folder Include="Areas\User\Data\" />
+    <Folder Include="Areas\User\Models\" />
+    <Folder Include="Areas\User\Views\" />
     <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="H:\ASP\LibraryManagement\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="H:\ASP\LibraryManagement\.editorconfig" />
   </ItemGroup>
 
 </Project>

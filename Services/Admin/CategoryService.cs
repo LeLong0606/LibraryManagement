@@ -8,13 +8,13 @@ using MongoDB.Driver;
 
 namespace LibraryManagement.Services.Admin
 {
-    public class CategoriesService
+    public class CategoryService
     {
         private IMongoCollection<Category> _categoriesCollection;
         private IMongoCollection<Book> _booksCollection;
         private readonly IMapper _mapper;
 
-        public CategoriesService(IOptions<LMDSettings> libraryManagementDatabaseSettings, IMapper mapper)
+        public CategoryService(IOptions<LMDSettings> libraryManagementDatabaseSettings, IMapper mapper)
         {
             var mongoClient = new MongoClient(libraryManagementDatabaseSettings.Value.ConnectionString);
             var mongoDatabase = mongoClient.GetDatabase(libraryManagementDatabaseSettings.Value.DatabaseName);

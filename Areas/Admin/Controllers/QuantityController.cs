@@ -8,13 +8,13 @@ namespace LibraryManagement.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
-    [Route("LibraryAPI/[controller]")]
+    [Route("LibraryAPI/[Area]/[controller]")]
     [ApiController]
-    public class QuantitiesController : ControllerBase
+    public class QuantityController : ControllerBase
     {
-        private readonly QuantitiesService _quantitiesService;
+        private readonly QuantityService _quantitiesService;
 
-        public QuantitiesController(QuantitiesService quantitiesService)
+        public QuantityController(QuantityService quantitiesService)
         {
             _quantitiesService = quantitiesService;
         }

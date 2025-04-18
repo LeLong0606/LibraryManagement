@@ -8,13 +8,13 @@ namespace LibraryManagement.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
-    [Route("LibraryAPI/[controller]")]
+    [Route("LibraryAPI/[Area]/[controller]")]
     [ApiController]
-    public class CategoriesController : ControllerBase
+    public class CategoryController : ControllerBase
     {
-        private readonly CategoriesService _categoriesService;
+        private readonly CategoryService _categoriesService;
 
-        public CategoriesController(CategoriesService categoriesService)
+        public CategoryController(CategoryService categoriesService)
         {
             _categoriesService = categoriesService;
         }
